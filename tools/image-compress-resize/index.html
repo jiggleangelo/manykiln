@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Image compress and resize — Manykiln</title><link rel="stylesheet" href="style.css"></head>
+<body><main><h1>Image compress and resize</h1><p>Resize and encode one image on your device. No upload or account.</p>
+<p>Do not paste passwords, one-time codes, card or bank numbers, or ID numbers.</p>
+<section id="drop" aria-label="Image drop area"><label for="file">Choose an image, or drop one here</label>
+<input id="file" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/avif,image/bmp"></section>
+<form id="options"><label for="maxDimension">Maximum dimension (pixels, 0 keeps size)</label><input id="maxDimension" type="number" min="0" max="16000" value="1600">
+<label for="maxKiB">Target size (KiB, estimate; 0 has no target)</label><input id="maxKiB" type="number" min="0" value="200">
+<label for="format">Format</label><select id="format"><option value="auto">Auto</option><option value="webp">WebP</option><option value="jpeg">JPEG</option><option value="png">PNG</option></select>
+<label for="quality">Quality (0–100, blank estimates)</label><input id="quality" type="number" min="0" max="100" placeholder="Estimate"></form>
+<section aria-label="Made-up presets"><h2>Made-up examples</h2><p>Examples on this page are made up.</p>
+<button type="button" data-preset="0">Made-up example: Tiny avatar</button><button type="button" data-preset="1">Made-up example: Small web image</button>
+<button type="button" data-preset="2">Made-up example: Print quality</button><button type="button" data-preset="3">Made-up example: Lossless PNG</button></section>
+<p><button type="button" id="compress">Compress</button><button type="button" id="reset">Reset options</button><button type="button" id="clear">Clear image</button></p>
+<p id="status" role="status" aria-live="polite">Choose an image to begin.</p><img id="preview" alt="Compressed image preview" hidden>
+<p><a id="download" hidden>Download image</a></p><h2>Limits</h2><p>Targets and quality are estimates. Some outputs grow. Formats depend on browser canvas support; AVIF encoding is unavailable here. GIF animation becomes one frame. JPEG uses a white background for transparency. One image at a time, up to 30 MiB and 40 megapixels. PNG encoding preserves the resized pixels; resizing itself changes the image.</p>
+<footer><p>Free and open source (MIT). Runs in your browser; nothing you type leaves this page. Built by AI agents at Manykiln. Nothing is charged.</p>
+<a href="https://manykiln.com/tools/image-compress-resize/">Tool page</a> · <a href="https://github.com/jiggleangelo/image-compress-resize">Source</a> · <a href="https://join.manykiln.com/?from=image-compress-resize">Join list</a> · <a href="https://manykiln.com/privacy">Privacy</a></footer>
+</main><script src="core.js"></script><script src="app.js"></script></body></html>

@@ -1,0 +1,425 @@
+services:
+  tools:
+    image: nginx:1.27-alpine
+    ports: ["127.0.0.1:8080:80"]
+    volumes: ["./web:/usr/share/nginx/html:ro"]
+    restart: unless-stopped
+  againface:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9001"}
+    ports: ["127.0.0.1:9001:8080"]
+    volumes: ["./apps/againface:/app:ro", "againface-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  agentlatch:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9002"}
+    ports: ["127.0.0.1:9002:8080"]
+    volumes: ["./apps/agentlatch:/app:ro", "agentlatch-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  cedarquill:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9003"}
+    ports: ["127.0.0.1:9003:8080"]
+    volumes: ["./apps/cedarquill:/app:ro", "cedarquill-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  creeldeck:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9004"}
+    ports: ["127.0.0.1:9004:8080"]
+    volumes: ["./apps/creeldeck:/app:ro", "creeldeck-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  datalineage:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9005"}
+    ports: ["127.0.0.1:9005:8080"]
+    volumes: ["./apps/datalineage:/app:ro", "datalineage-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  daygive:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9006"}
+    ports: ["127.0.0.1:9006:8080"]
+    volumes: ["./apps/daygive:/app:ro", "daygive-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  grantlatch:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9007"}
+    ports: ["127.0.0.1:9007:8080"]
+    volumes: ["./apps/grantlatch:/app:ro", "grantlatch-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  handledger:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9008"}
+    ports: ["127.0.0.1:9008:8080"]
+    volumes: ["./apps/handledger:/app:ro", "handledger-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  hearthline:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9009"}
+    ports: ["127.0.0.1:9009:8080"]
+    volumes: ["./apps/hearthline:/app:ro", "hearthline-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  hushwindow:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9010"}
+    ports: ["127.0.0.1:9010:8080"]
+    volumes: ["./apps/hushwindow:/app:ro", "hushwindow-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  kinrota:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9011"}
+    ports: ["127.0.0.1:9011:8080"]
+    volumes: ["./apps/kinrota:/app:ro", "kinrota-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  lanternkeep:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9012"}
+    ports: ["127.0.0.1:9012:8080"]
+    volumes: ["./apps/lanternkeep:/app:ro", "lanternkeep-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  limitlatch:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9013"}
+    ports: ["127.0.0.1:9013:8080"]
+    volumes: ["./apps/limitlatch:/app:ro", "limitlatch-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  marginmesh:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9014"}
+    ports: ["127.0.0.1:9014:8080"]
+    volumes: ["./apps/marginmesh:/app:ro", "marginmesh-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  mnemoport:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9015"}
+    ports: ["127.0.0.1:9015:8080"]
+    volumes: ["./apps/mnemoport:/app:ro", "mnemoport-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  norvelet:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9016"}
+    ports: ["127.0.0.1:9016:8080"]
+    volumes: ["./apps/norvelet:/app:ro", "norvelet-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  pausekin:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9017"}
+    ports: ["127.0.0.1:9017:8080"]
+    volumes: ["./apps/pausekin:/app:ro", "pausekin-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  quietbatch:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9018"}
+    ports: ["127.0.0.1:9018:8080"]
+    volumes: ["./apps/quietbatch:/app:ro", "quietbatch-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  quietoffer:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9019"}
+    ports: ["127.0.0.1:9019:8080"]
+    volumes: ["./apps/quietoffer:/app:ro", "quietoffer-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  quietrack:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9020"}
+    ports: ["127.0.0.1:9020:8080"]
+    volumes: ["./apps/quietrack:/app:ro", "quietrack-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  quillmirror:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9021"}
+    ports: ["127.0.0.1:9021:8080"]
+    volumes: ["./apps/quillmirror:/app:ro", "quillmirror-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  quillnest:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9022"}
+    ports: ["127.0.0.1:9022:8080"]
+    volumes: ["./apps/quillnest:/app:ro", "quillnest-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  quillvane:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9023"}
+    ports: ["127.0.0.1:9023:8080"]
+    volumes: ["./apps/quillvane:/app:ro", "quillvane-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  rebatelane:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9024"}
+    ports: ["127.0.0.1:9024:8080"]
+    volumes: ["./apps/rebatelane:/app:ro", "rebatelane-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  reviewtrail:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9025"}
+    ports: ["127.0.0.1:9025:8080"]
+    volumes: ["./apps/reviewtrail:/app:ro", "reviewtrail-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  ringspanner:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9026"}
+    ports: ["127.0.0.1:9026:8080"]
+    volumes: ["./apps/ringspanner:/app:ro", "ringspanner-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  rituwick:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9027"}
+    ports: ["127.0.0.1:9027:8080"]
+    volumes: ["./apps/rituwick:/app:ro", "rituwick-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  servobook:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9028"}
+    ports: ["127.0.0.1:9028:8080"]
+    volumes: ["./apps/servobook:/app:ro", "servobook-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  shelfcheck:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9029"}
+    ports: ["127.0.0.1:9029:8080"]
+    volumes: ["./apps/shelfcheck:/app:ro", "shelfcheck-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  shortlyne:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9030"}
+    ports: ["127.0.0.1:9030:8080"]
+    volumes: ["./apps/shortlyne:/app:ro", "shortlyne-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  siloscale:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9031"}
+    ports: ["127.0.0.1:9031:8080"]
+    volumes: ["./apps/siloscale:/app:ro", "siloscale-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  sixtable:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9032"}
+    ports: ["127.0.0.1:9032:8080"]
+    volumes: ["./apps/sixtable:/app:ro", "sixtable-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  skillward:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9033"}
+    ports: ["127.0.0.1:9033:8080"]
+    volumes: ["./apps/skillward:/app:ro", "skillward-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  slotlane:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9034"}
+    ports: ["127.0.0.1:9034:8080"]
+    volumes: ["./apps/slotlane:/app:ro", "slotlane-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  slotwise:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9035"}
+    ports: ["127.0.0.1:9035:8080"]
+    volumes: ["./apps/slotwise:/app:ro", "slotwise-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  tallyproof:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9036"}
+    ports: ["127.0.0.1:9036:8080"]
+    volumes: ["./apps/tallyproof:/app:ro", "tallyproof-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  undocart:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9037"}
+    ports: ["127.0.0.1:9037:8080"]
+    volumes: ["./apps/undocart:/app:ro", "undocart-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+  vellumgrant:
+    image: python:3.12-slim
+    working_dir: /app
+    command: ["python3", "app.py"]
+    environment: {PORT: "8080", APP_HOST: "0.0.0.0", DATA_DIR: /data, APP_DATA_CAP_MB: "100", PYTHONDONTWRITEBYTECODE: "1", PUBLIC_BASE_URL: "http://localhost:9038"}
+    ports: ["127.0.0.1:9038:8080"]
+    volumes: ["./apps/vellumgrant:/app:ro", "vellumgrant-data:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+volumes:
+  againface-data: {}
+  agentlatch-data: {}
+  cedarquill-data: {}
+  creeldeck-data: {}
+  datalineage-data: {}
+  daygive-data: {}
+  grantlatch-data: {}
+  handledger-data: {}
+  hearthline-data: {}
+  hushwindow-data: {}
+  kinrota-data: {}
+  lanternkeep-data: {}
+  limitlatch-data: {}
+  marginmesh-data: {}
+  mnemoport-data: {}
+  norvelet-data: {}
+  pausekin-data: {}
+  quietbatch-data: {}
+  quietoffer-data: {}
+  quietrack-data: {}
+  quillmirror-data: {}
+  quillnest-data: {}
+  quillvane-data: {}
+  rebatelane-data: {}
+  reviewtrail-data: {}
+  ringspanner-data: {}
+  rituwick-data: {}
+  servobook-data: {}
+  shelfcheck-data: {}
+  shortlyne-data: {}
+  siloscale-data: {}
+  sixtable-data: {}
+  skillward-data: {}
+  slotlane-data: {}
+  slotwise-data: {}
+  tallyproof-data: {}
+  undocart-data: {}
+  vellumgrant-data: {}
