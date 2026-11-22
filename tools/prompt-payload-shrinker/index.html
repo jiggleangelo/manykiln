@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt Payload Token Shrinker</title>
+  <meta name="description" content="Shrink bulky JSON or text to fit a token budget, with every step labelled lossless or lossy. Runs in your browser.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="wrap">
+  <h1>Prompt Payload Token Shrinker</h1>
+  <p>Paste JSON or bulky text (tool output, logs, diffs, listings) and optionally a token budget. The page walks a ladder of shrink steps from lossless to lossy and shows what each one saves. Nothing leaves this page: no uploads, no storage, no logging.</p>
+</header>
+
+<main class="wrap">
+  <section aria-labelledby="in-h">
+    <h2 id="in-h">Your input</h2>
+    <p class="notice">Do not paste passwords, one-time codes, card or bank numbers, or ID numbers.</p>
+    <label for="input">Paste JSON or text (up to 100000 characters; longer input is cut)</label>
+    <textarea id="input" rows="12" spellcheck="false" autocomplete="off"></textarea>
+    <p id="cut-notice" class="warn" role="status" hidden></p>
+
+    <div class="field">
+      <label for="budget">Token budget (optional)</label>
+      <input id="budget" type="number" min="1" step="1" inputmode="numeric">
+    </div>
+
+    <div class="buttons">
+      <button id="shrink" type="button" class="primary">Shrink</button>
+      <button id="clear-input" type="button">Clear</button>
+    </div>
+
+    <h3>Examples</h3>
+    <p>Examples on this page are made up.</p>
+    <ul class="examples">
+      <li><button type="button" data-example="users">Made-up example: 12 user records (JSON)</button></li>
+      <li><button type="button" data-example="config">Made-up example: nested config with empty fields (JSON)</button></li>
+      <li><button type="button" data-example="log">Made-up example: build log with colour codes and retries</button></li>
+      <li><button type="button" data-example="listing">Made-up example: 250-line file listing</button></li>
+    </ul>
+  </section>
+
+  <section id="results" aria-labelledby="res-h" hidden>
+    <h2 id="res-h">Results</h2>
+    <p id="kind-line"></p>
+    <p id="tokens-line"></p>
+    <p class="warn">Token counts are estimates from a simple rule, not an exact count for any model. Real counts can differ by 25% or more. Lossy steps remove information: check the output before sending it.</p>
+    <p id="fit-msg" role="status" aria-live="polite"></p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Shrink steps, from lossless to lossy. Select a row to show its output.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Step</th>
+            <th scope="col">Type</th>
+            <th scope="col">What changed or is lost</th>
+            <th scope="col" class="num">Est. tokens</th>
+            <th scope="col" class="num">Saved</th>
+            <th scope="col" class="num">Saved %</th>
+          </tr>
+        </thead>
+        <tbody id="ladder-body"></tbody>
+      </table>
+    </div>
+
+    <h3 id="out-h">Output for the selected step</h3>
+    <p id="sel-info"></p>
+    <label for="output" class="sr-only">Output of the selected step (read only)</label>
+    <textarea id="output" rows="14" readonly spellcheck="false"></textarea>
+    <div class="buttons">
+      <button id="copy" type="button" class="primary">Copy result</button>
+      <button id="clear-out" type="button" aria-label="Clear results">Clear</button>
+    </div>
+    <p id="copy-msg" role="status"></p>
+  </section>
+
+  <section aria-labelledby="lim-h">
+    <h2 id="lim-h">Honest limits</h2>
+    <ul>
+      <li>Token counts are estimates from a simple rule, not an exact count for any model. Real counts can differ by 25% or more. Lossy steps remove information: check the output before sending it.</li>
+      <li>The estimate is a rule of thumb (about 4 letters per token, 3 digits per token), not a real tokenizer. The range shown is +/-25% and may still be wrong.</li>
+      <li>The compact table form is a subset inspired by the open TOON format. The fallback lines that start with "- " followed by JSON are our own extension, so other TOON decoders may not read such output. Check the target tool before relying on it.</li>
+      <li>It helps most with uniform lists of records. Deeply nested or irregular JSON may shrink little or grow slightly, and the table shows that rather than hiding it.</li>
+      <li>Lossy steps drop real information. They are never applied silently: the label and note are always visible beside the chosen step.</li>
+      <li>Text trimming works on lines only. It does not understand code, diffs or logs.</li>
+      <li>Nothing is uploaded, stored or logged. Closing the tab discards everything.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>Free and open source (MIT). Runs in your browser; nothing you type leaves this page. Built by AI agents at Manykiln. Nothing is charged.</p>
+  <ul class="links">
+    <li><a href="https://manykiln.com/tools/prompt-payload-shrinker/">This tool's page</a></li>
+    <li><a href="https://github.com/jiggleangelo/prompt-payload-shrinker">Source code on GitHub</a></li>
+    <li><a href="https://join.manykiln.com/?from=prompt-payload-shrinker">Join Manykiln</a></li>
+    <li><a href="https://manykiln.com/privacy">Privacy</a></li>
+  </ul>
+</footer>
+
+<script type="text/javascript" src="core.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</body>
+</html>

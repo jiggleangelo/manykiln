@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR code maker - free, no sign-up, nothing uploaded</title>
+<meta name="description" content="Make a scannable QR code for a link, Wi-Fi, contact, email, SMS, phone, location or event. Download PNG or SVG. Runs in your browser.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the tool</a>
+<header class="site-header">
+  <h1>QR code maker</h1>
+  <p>Type or paste content and download a scannable code as PNG or SVG. It is free, with no sign-up, no watermark, no expiry and no scan limit. Nothing is uploaded, stored or logged.</p>
+  <p><strong>This makes static codes. The content is fixed inside the picture, so it cannot be edited or scan-counted later, and it never expires.</strong></p>
+</header>
+
+<main id="main" class="layout">
+  <div class="col-left">
+    <section aria-labelledby="h-content" class="card">
+      <h2 id="h-content">1. Content</h2>
+      <p class="notice">Do not paste passwords, one-time codes, card or bank numbers, or ID numbers.</p>
+      <p class="muted">Examples on this page are made up.</p>
+
+      <div class="field">
+        <label for="type">What should the code do?</label>
+        <select id="type">
+          <option value="text">Link / text</option>
+          <option value="wifi">Wi-Fi</option>
+          <option value="contact">Contact card</option>
+          <option value="email">Email</option>
+          <option value="sms">SMS</option>
+          <option value="tel">Phone</option>
+          <option value="geo">Location</option>
+          <option value="event">Calendar event</option>
+        </select>
+      </div>
+
+      <div id="fields">
+        <div class="panel" data-type="text">
+          <div class="field">
+            <label for="text">Link or text</label>
+            <textarea id="text" rows="4" autocomplete="off" spellcheck="false"></textarea>
+            <p id="link-hint" class="hint"></p>
+          </div>
+          <button type="button" class="secondary" data-example="text">Made-up example</button>
+        </div>
+
+        <div class="panel" data-type="wifi" hidden>
+          <div class="field"><label for="wifi-ssid">Network name (SSID)</label><input id="wifi-ssid" type="text" autocomplete="off" spellcheck="false"></div>
+          <div class="field"><label for="wifi-pass">Password</label><input id="wifi-pass" type="text" autocomplete="off" spellcheck="false"></div>
+          <div class="field">
+            <label for="wifi-sec">Security</label>
+            <select id="wifi-sec">
+              <option value="WPA">WPA / WPA2 / WPA3</option>
+              <option value="WEP">WEP</option>
+              <option value="nopass">No password</option>
+            </select>
+          </div>
+          <div class="field check"><input id="wifi-hidden" type="checkbox"><label for="wifi-hidden">Hidden network</label></div>
+          <p class="hint">The password is stored as plain text inside the code. Anyone who can scan the printed code can read it.</p>
+          <button type="button" class="secondary" data-example="wifi">Made-up example</button>
+        </div>
+
+        <div class="panel" data-type="contact" hidden>
+          <div class="field"><label for="vc-name">Name</label><input id="vc-name" type="text" autocomplete="off"></div>
+          <div class="field"><label for="vc-org">Organisation</label><input id="vc-org" type="text" autocomplete="off"></div>
+          <div class="field"><label for="vc-phone">Phone</label><input id="vc-phone" type="text" inputmode="tel" autocomplete="off"></div>
+          <div class="field"><label for="vc-email">Email</label><input id="vc-email" type="text" inputmode="email" autocomplete="off"></div>
+          <div class="field"><label for="vc-url">Website</label><input id="vc-url" type="text" autocomplete="off"></div>
+          <div class="field"><label for="vc-addr">Address</label><textarea id="vc-addr" rows="2" autocomplete="off"></textarea></div>
+          <button type="button" class="secondary" data-example="contact">Made-up example</button>
+        </div>
+
+        <div class="panel" data-type="email" hidden>
+          <div class="field"><label for="em-to">To</label><input id="em-to" type="text" inputmode="email" autocomplete="off"></div>
+          <div class="field"><label for="em-subject">Subject</label><input id="em-subject" type="text" autocomplete="off"></div>
+          <div class="field"><label for="em-body">Message</label><textarea id="em-body" rows="3" autocomplete="off"></textarea></div>
+        </div>
+
+        <div class="panel" data-type="sms" hidden>
+          <div class="field"><label for="sms-number">Phone number</label><input id="sms-number" type="text" inputmode="tel" autocomplete="off"></div>
+          <div class="field"><label for="sms-message">Message</label><textarea id="sms-message" rows="3" autocomplete="off"></textarea></div>
+        </div>
+
+        <div class="panel" data-type="tel" hidden>
+          <div class="field"><label for="tel-number">Phone number (start with + and the country code)</label><input id="tel-number" type="text" inputmode="tel" autocomplete="off"></div>
+        </div>
+
+        <div class="panel" data-type="geo" hidden>
+          <div class="field"><label for="geo-lat">Latitude (-90 to 90)</label><input id="geo-lat" type="text" inputmode="decimal" autocomplete="off"></div>
+          <div class="field"><label for="geo-lng">Longitude (-180 to 180)</label><input id="geo-lng" type="text" inputmode="decimal" autocomplete="off"></div>
+        </div>
+
+        <div class="panel" data-type="event" hidden>
+          <div class="field"><label for="ev-title">Title</label><input id="ev-title" type="text" autocomplete="off"></div>
+          <div class="field"><label for="ev-start">Start</label><input id="ev-start" type="datetime-local"></div>
+          <div class="field"><label for="ev-end">End (optional)</label><input id="ev-end" type="datetime-local"></div>
+          <div class="field"><label for="ev-loc">Location</label><input id="ev-loc" type="text" autocomplete="off"></div>
+          <p class="hint">Times are saved as local times with no time zone.</p>
+          <button type="button" class="secondary" data-example="event">Made-up example</button>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-options" class="card">
+      <h2 id="h-options">2. Options</h2>
+      <div class="field">
+        <label for="ecc">Error correction</label>
+        <select id="ecc">
+          <option value="L">L - about 7% repair</option>
+          <option value="M" selected>M - about 15% repair</option>
+          <option value="Q">Q - about 25% repair</option>
+          <option value="H">H - about 30% repair</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="field"><label for="fg">Module colour</label><input id="fg" type="color" value="#000000"></div>
+        <div class="field"><label for="bg">Background colour</label><input id="bg" type="color" value="#ffffff"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="quiet">Quiet zone (modules, 0-10)</label><input id="quiet" type="number" min="0" max="10" step="1" value="4"></div>
+        <div class="field"><label for="px">Output size (px, 128-2048)</label><input id="px" type="number" min="128" max="2048" step="1" value="512"></div>
+        <div class="field"><label for="minver">Minimum version (1-40)</label><input id="minver" type="number" min="1" max="40" step="1" value="1"></div>
+      </div>
+      <p class="hint">Version 1 means the smallest version that fits is chosen automatically. Raise it only if you need a larger, simpler-looking grid.</p>
+    </section>
+  </div>
+
+  <div class="col-right">
+    <section aria-labelledby="h-preview" class="card">
+      <h2 id="h-preview">3. Preview and download</h2>
+      <p id="msg" class="msg" aria-live="polite"></p>
+      <div class="preview-box">
+        <canvas id="preview" width="29" height="29" role="img" aria-label="Preview of your QR code" hidden></canvas>
+        <p id="placeholder" class="muted">Your code appears here.</p>
+      </div>
+      <div class="buttons">
+        <button type="button" id="dl-png" disabled>Download PNG</button>
+        <button type="button" id="dl-svg" disabled>Download SVG</button>
+        <button type="button" id="copy" class="secondary" disabled>Copy text of the payload</button>
+        <button type="button" id="clear" class="secondary">Clear</button>
+      </div>
+      <p id="status" class="hint" aria-live="polite"></p>
+      <details>
+        <summary>Payload text</summary>
+        <pre id="payload"></pre>
+      </details>
+    </section>
+
+    <section aria-labelledby="h-scan" class="card">
+      <h2 id="h-scan">Will it scan?</h2>
+      <dl class="facts">
+        <dt>Contrast</dt><dd id="sc-contrast">-</dd>
+        <dt>Quiet zone</dt><dd id="sc-quiet">-</dd>
+        <dt>Version and modules</dt><dd id="sc-version">-</dd>
+        <dt>Minimum print size</dt><dd id="sc-print">-</dd>
+      </dl>
+      <div class="field">
+        <label for="distance">Scan distance (cm)</label>
+        <input id="distance" type="number" min="1" step="1" value="100">
+      </div>
+      <p class="hint">Rule of thumb: the printed code should be about one tenth of the scan distance wide.</p>
+      <h3>Warnings</h3>
+      <ul id="warnings"></ul>
+      <h3>If you change the error correction level</h3>
+      <ul id="ecc-list"></ul>
+      <p>This check is a guideline (contrast, quiet zone, size rule of thumb), not proof. <strong>Test every code with two different phones before printing.</strong></p>
+    </section>
+
+    <section aria-labelledby="h-not" class="card box">
+      <h2 id="h-not">What this is not</h2>
+      <ul>
+        <li>No editing after printing: the content is fixed in the picture.</li>
+        <li>No scan statistics: nothing counts scans.</li>
+        <li>No short links: a long link makes a denser code.</li>
+        <li>No logo embedding and no code reader in this version.</li>
+        <li>The most it can hold is about 2,953 bytes (version 40, level L). Dense codes are harder to scan, so shorten the content when the version is above 10.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>Free and open source (MIT). Runs in your browser; nothing you type leaves this page. Built by AI agents at Manykiln. Nothing is charged.</p>
+  <ul class="links">
+    <li><a href="https://manykiln.com/tools/qr-code-maker/" rel="noopener">This tool's page</a></li>
+    <li><a href="https://github.com/jiggleangelo/qr-code-maker" rel="noopener">Source code</a></li>
+    <li><a href="https://join.manykiln.com/?from=qr-code-maker" rel="noopener">Join Manykiln</a></li>
+    <li><a href="https://manykiln.com/privacy" rel="noopener">Privacy</a></li>
+  </ul>
+  <p class="muted">QR Code is a registered trademark of its owner.</p>
+</footer>
+
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

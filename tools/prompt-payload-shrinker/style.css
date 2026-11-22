@@ -1,0 +1,163 @@
+:root {
+  --bg: #f6f7f9;
+  --fg: #14181f;
+  --muted: #3d4655;
+  --line: #b9c0cc;
+  --card: #ffffff;
+  --accent: #0b4fb3;
+  --accent-fg: #ffffff;
+  --ok-bg: #e3f4e6;
+  --ok-fg: #0d4a1c;
+  --bad-bg: #fdecd8;
+  --bad-fg: #6b3200;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.wrap, main {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+header.wrap { padding-top: 1.5rem; }
+footer.wrap { padding-bottom: 2rem; border-top: 1px solid var(--line); margin-top: 2rem; }
+
+h1 { font-size: 1.7rem; margin: 0 0 .5rem; }
+h2 { font-size: 1.3rem; margin: 1.5rem 0 .5rem; }
+h3 { font-size: 1.1rem; margin: 1.2rem 0 .4rem; }
+
+section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: .5rem 1rem 1rem;
+  margin-top: 1rem;
+}
+
+label { display: block; font-weight: 600; margin: .75rem 0 .25rem; }
+
+textarea, input[type="number"] {
+  width: 100%;
+  font: 14px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--fg);
+  background: #fff;
+  border: 1px solid #6b7485;
+  border-radius: 6px;
+  padding: .5rem;
+}
+
+input[type="number"] { max-width: 14rem; font-family: inherit; font-size: 1rem; }
+
+textarea[readonly] { background: #eef1f5; }
+
+button {
+  font: inherit;
+  color: var(--fg);
+  background: #e6eaf0;
+  border: 1px solid #6b7485;
+  border-radius: 6px;
+  padding: .45rem .9rem;
+  cursor: pointer;
+}
+
+button.primary {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: var(--accent);
+}
+
+button:hover { filter: brightness(.95); }
+
+:focus-visible {
+  outline: 3px solid #ff9f1a;
+  outline-offset: 2px;
+}
+
+.buttons { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+
+.notice, .warn {
+  border-left: 4px solid #8a5a00;
+  background: #fff6e0;
+  color: #3b2900;
+  padding: .5rem .75rem;
+  border-radius: 4px;
+}
+
+.examples { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.examples li { margin: 0; }
+
+#fit-msg.ok { background: var(--ok-bg); color: var(--ok-fg); padding: .5rem .75rem; border-radius: 4px; font-weight: 600; }
+#fit-msg.bad { background: var(--bad-bg); color: var(--bad-fg); padding: .5rem .75rem; border-radius: 4px; font-weight: 600; }
+
+.table-wrap { overflow-x: auto; }
+
+table { border-collapse: collapse; width: 100%; min-width: 40rem; }
+caption { text-align: left; color: var(--muted); padding: .25rem 0; }
+th, td { border: 1px solid var(--line); padding: .4rem .5rem; text-align: left; vertical-align: top; }
+thead th { background: #e6eaf0; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: #f0f3f8; }
+tbody tr.selected { background: #dce8fb; }
+tbody tr.fit th:first-child { border-left: 6px solid #1c7a33; }
+tbody tr.nofit th:first-child { border-left: 6px solid #9a5200; }
+
+.step-btn {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  font-weight: 600;
+  text-decoration: underline;
+  color: var(--accent);
+}
+
+.tag {
+  display: block;
+  margin-top: .2rem;
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--ok-fg);
+}
+
+tr.nofit .tag { color: var(--bad-fg); }
+
+.badge {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  padding: .1rem .45rem;
+  border-radius: 4px;
+  border: 1px solid currentColor;
+}
+
+.badge.lossless { color: var(--ok-fg); background: var(--ok-bg); }
+.badge.lossy { color: var(--bad-fg); background: var(--bad-bg); }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.links { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 1rem; }
+a { color: var(--accent); }
+
+@media (max-width: 600px) {
+  h1 { font-size: 1.4rem; }
+  .examples { flex-direction: column; }
+  .examples button { width: 100%; text-align: left; }
+}
